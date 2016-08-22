@@ -1,0 +1,2 @@
+defmodule IssueFetcher do
+end
