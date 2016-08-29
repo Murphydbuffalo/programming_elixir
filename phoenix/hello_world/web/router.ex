@@ -19,10 +19,15 @@ defmodule HelloWorld.Router do
     get "/", PageController, :index
     get "/hello", HelloController, :index
     get "/hello/:message", HelloController, :show
+
+    resources "/users", UserController
+    resources "/reviews", ReviewController
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", HelloWorld do
-  #   pipe_through :api
-  # end
+  scope "/admin", HelloWorld.Admin, as: :admin do
+    pipe_through :browser
+
+    resources "/users", UserController
+    resources "/reviews", ReviewController
+  end
 end
