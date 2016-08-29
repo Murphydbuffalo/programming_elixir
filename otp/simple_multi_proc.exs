@@ -6,9 +6,6 @@ defmodule Receiver do
       { sender_pid, message } ->
         send sender_pid, { self, "Message received!\n#{message}\n" }
         respond
-      # after 500 ->
-      #   IO.puts "Something's gone wrong in Reciever :("
-      #   exit(self)
     end
   end
 end
@@ -18,7 +15,7 @@ IO.puts "About to send a message to Reciever...\n"
 send receiver_pid, { self, "Hello out there!" }
 
 receive do
-  { _receiver_pid, response} ->
+  { _receiver_pid, response } ->
     IO.puts "Response from Receiver:\n#{response}\n"
   after 500 ->
     IO.puts "Something went wrong in Sender :("
@@ -28,7 +25,7 @@ end
 send receiver_pid, { self, "Hello again!" }
 
 receive do
-  { _receiver_pid, response} ->
+  { _receiver_pid, response } ->
     IO.puts "Response recieved:\n#{response}"
   after 500 ->
     IO.puts "Something went wrong in Sender :("

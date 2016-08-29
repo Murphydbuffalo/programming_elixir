@@ -1,6 +1,6 @@
 defmodule ProcessChain do
   def start_chain(n) do
-    start_pid = Enum.reduce 1..n, self, fn (_n, next_pid)->
+    start_pid = Enum.reduce 1..n, self, fn (_n, next_pid) ->
       spawn(__MODULE__, :increment_counter, [next_pid])
     end
 
